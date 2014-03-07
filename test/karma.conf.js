@@ -8,7 +8,7 @@ module.exports = function(karma) {
 
 
     // frameworks to use
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'requirejs'],
 
 
     // list of files / patterns to load in the browser
@@ -23,7 +23,10 @@ module.exports = function(karma) {
       // Load mocks directly from bower
       'bower_components/angular-mocks/angular-mocks.js',
 
-      'test/unit/**/*.spec.*'
+      {pattern: 'test/unit/**/*.spec.*', included: false},
+      {pattern: 'node_modules/underscore/underscore.js', included: false},
+
+      'test/test-main.js'
     ],
 
 
@@ -66,7 +69,7 @@ module.exports = function(karma) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // If browser does not capture in given timeout [ms], kill it
@@ -76,8 +79,9 @@ module.exports = function(karma) {
     // Plugins to load
     plugins: [
       'karma-jasmine',
+      'karma-requirejs',
       'karma-coffee-preprocessor',
-      'karma-chrome-launcher'
+      'karma-phantomjs-launcher'
     ],
 
 
